@@ -17,6 +17,5 @@ class Package:
             print("Invalid input, please enter Y or N.")
             return
     
-    def test(self):
-        print(self.PackageInstalled)
+
 

@@ -8,12 +8,12 @@ class BBR:
     BlazorRootComponentFolder: str
     BlazorProgramFolder: str
 
-    def ConvertAllRegisteredComponents(ReactRootComponent, BlazorRootComponent) -> None:
+    def ConvertAllRegisteredComponents(self) -> None:
         pass
 
-    def ConvertComponent(ReactRootComponent, BlazorRootComponent, ComponentName: str)-> None:
+    def ConvertComponent(self, ComponentName: str)-> None:
         pass
 
-    def CreateCustomComponent(BlazorProgramFolder, RazorWidgetName: str, NewComponentName: str) -> None:
+    def CreateCustomComponent(self, RazorWidgetName: str, NewComponentName: str) -> None:
         pass
     
