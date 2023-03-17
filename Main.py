@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from .BlazorProcesses.CheckPackageInstallation import Package
 from .BlazorProcesses.CheckRegisteredComponent import Registration
 from .BlazorProcesses.NonClassFunctions import WriteToProgramFile
+from .BlazorProcesses.NonClassFunctions import PublishComponents
 import typer
 
 @dataclass
@@ -21,5 +22,8 @@ class BBR:
         if Registration.CheckRegistration(NewComponentName=NewComponentName):
             print("A component already exists with that name")
             return
-        path = self.BlazorProgramFolder
+        pathToProgram = self.BlazorProgramFolder
+        pathToRoot = self.BlazorRootComponentFolder
+        WriteToProgramFile(RazorWidgetName, NewComponentName, pathToRoot)
+
     
