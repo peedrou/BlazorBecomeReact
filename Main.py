@@ -8,7 +8,7 @@ import typer
 @dataclass
 class BBR:
     ReactRootComponentFolder: str
-    BlazorRootComponentFolder: str
+    BlazorRootFolder: str
     BlazorProgramFolder: str
 
     def ConvertAllRegisteredComponents(self) -> None:
@@ -23,7 +23,8 @@ class BBR:
             print("A component already exists with that name")
             return
         pathToProgram = self.BlazorProgramFolder
-        pathToRoot = self.BlazorRootComponentFolder
+        pathToRoot = self.BlazorRootFolder
         WriteToProgramFile(RazorWidgetName, NewComponentName, pathToRoot)
+        PublishComponents(self.BlazorRootFolder)
 
     
