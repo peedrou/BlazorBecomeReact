@@ -7,7 +7,7 @@ import typer
 
 @dataclass
 class BBR:
-    ReactRootComponentFolder: str
+    ReactPublicFolder: str
     BlazorRootFolder: str
     BlazorProgramFolder: str
 
@@ -18,13 +18,13 @@ class BBR:
         pass
 
     def RegisterComponentInBlazor(self, RazorWidgetName: str, NewComponentName: str) -> None:
+        pathToProgram = self.BlazorProgramFolder
+        pathToRoot = self.BlazorRootFolder
         Package.CheckPackage()
         if Registration.CheckRegistration(NewComponentName=NewComponentName):
             print("A component already exists with that name")
             return
-        pathToProgram = self.BlazorProgramFolder
-        pathToRoot = self.BlazorRootFolder
-        WriteToProgramFile(RazorWidgetName, NewComponentName, pathToRoot)
-        PublishComponents(self.BlazorRootFolder)
+        WriteToProgramFile(RazorWidgetName, NewComponentName, pathToProgram)
+        PublishComponents(pathToRoot)
 
     
