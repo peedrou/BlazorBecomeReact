@@ -3,23 +3,31 @@ from .BlazorProcesses.CheckPackageInstallation import Package
 from .BlazorProcesses.CheckRegisteredComponent import Registration
 from .BlazorProcesses.NonClassFunctions import WriteToProgramFile
 from .BlazorProcesses.NonClassFunctions import PublishComponents
-import typer
+from BlazorProcesses.NonClassFunctions import CopyAndPasteFolders
+from BlazorProcesses.NonClassFunctions import ChangeHTML
 
 @dataclass
 class BBR:
     ReactPublicFolder: str
+    ReactHTMLDirectory: str
     BlazorRootFolder: str
-    BlazorProgramFolder: str
+    BlazorProgramFileDirectory: str
 
     def ConvertAllRegisteredComponents(self) -> None:
-        pass
+        reactPublicFolder = self.ReactPublicFolder
+        blazorPublishFolder = fr"{self.BlazorRootFolder}\bin\Debug\net7.0\publish\wwwroot"
+        reactHTML = self.ReactHTMLDirectory
+
+        CopyAndPasteFolders(blazorPublishFolder, reactPublicFolder)
+        ChangeHTML(reactHTML)
 
     def ConvertComponent(self, ComponentName: str)-> None:
         pass
 
     def RegisterComponentInBlazor(self, RazorWidgetName: str, NewComponentName: str) -> None:
-        pathToProgram = self.BlazorProgramFolder
+        pathToProgram = self.BlazorProgramFileDirectory
         pathToRoot = self.BlazorRootFolder
+
         Package.CheckPackage()
         if Registration.CheckRegistration(NewComponentName=NewComponentName):
             print("A component already exists with that name")
